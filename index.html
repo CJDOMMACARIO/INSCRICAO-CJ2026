@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscrição CJ DOM MACÁRIO</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --brand-primary: #6366F1;
+      --brand-gradient: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+      --brand-gradient-glow: linear-gradient(135deg, #6366F1 0%, #EC4899 100%);
+      --bg-main: #0B0F19; /* Fundo escuro super moderno, estilo tech/gaming */
+      --surface-card: #1E293B; /* Superfície slate escura */
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border-color: #334155;
+      --success: #10B981;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 12px 24px -4px rgba(0, 0, 0, 0.4), 0 4px 12px 2px rgba(99, 102, 241, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 60px 20px;
+      background-image: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.08) 0%, transparent 40%);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius-lg);
+      padding: 30px 40px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 30px;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .header-logo-box {
+      width: 85px;
+      height: 85px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+
+    .header-logo-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0px 2px 8px rgba(0,0,0,0.2));
+    }
+
+    .header-center {
+      flex: 1;
+      text-align: center;
+    }
+
+    .header-center h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: var(--brand-gradient-glow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+      margin-bottom: 4px;
+    }
+
+    .header-center p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ===== HERO BANNER ===== */
+    .age-banner {
+      background: var(--brand-gradient);
+      color: white;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.5);
+      margin-bottom: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .age-banner span {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      margin-left: 5px;
+      display: inline-block;
+    }
+
+    /* ===== SEÇÃO LGPD ===== */
+    .lgpd-section {
+      background: var(--surface-card);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-bottom: 50px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .lgpd-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .lgpd-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #818CF8;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+
+    .lgpd-header-text h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .lgpd-header-text p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .lgpd-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .lgpd-card {
+      background: rgba(15, 23, 42, 0.4);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .lgpd-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #A5B4FC;
+      margin-bottom: 10px;
+    }
+
+    .lgpd-card p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .lgpd-destaque {
+      background: rgba(79, 70, 229, 0.08);
+      border-left: 4px solid var(--brand-primary);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+
+    .lgpd-destaque p {
+      font-size: 0.9rem;
+      color: #C7D2FE;
+      line-height: 1.6;
+    }
+
+    .lgpd-lei-ref {
+      margin-top: 25px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .lgpd-lei-ref a {
+      color: #818CF8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .lgpd-lei-ref a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== SEÇÃO ATIVIDADES ===== */
+    .activities-section {
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 40px;
+    }
+
+    .activities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .activity-card {
+      background: var(--surface-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(99, 102, 241, 0.4);
+    }
+
+    .activity-image {
+      width: 100%;
+      height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .activity-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .activity-card:hover .activity-image img {
+      transform: scale(1.05);
+    }
+
+    .activity-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--brand-gradient-glow);
+      color: white;
+      padding: 6px 16px;
+      border-radius: 30px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .activity-content {
+      padding: 32px;
+    }
+
+    .activity-content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .activity-content p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .horarios {
+      background: rgba(15, 23, 42, 0.5);
+      padding: 20px;
+      border-radius: var(--radius-md);
+      margin-top: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .horarios h4 {
+      color: #A5B4FC;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .horarios p {
+      color: var(--text-main);
+      font-size: 0.9rem;
+      margin: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* TRANSVERSAIS */
+    .themes-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .theme-card {
+      background: rgba(30, 41, 59, 0.4);
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .theme-card h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      color: #818CF8;
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .theme-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ===== FORMULÁRIO UI MODERNA ===== */
+    .form-section {
+      background: var(--surface-card);
+      border-radius: var(--radius-lg);
+      padding: 50px 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #818CF8;
+      margin: 45px 0 25px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #334155;
+    }
+
+    .form-section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+    }
+
+    label {
+      display: block;
+      color: #E2E8F0;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    input[type="text"], input[type="date"], input[type="number"],
+    input[type="tel"], select, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #334155;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text-main);
+      background: #0F172A;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--brand-primary);
+      background: #0F172A;
+      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.25);
+    }
+
+    .readonly-field {
+      background-color: #1E293B !important;
+      cursor: not-allowed;
+      color: #64748B !important;
+      border-color: #334155 !important;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .radio-group label {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      border: 2px solid #334155;
+      background: #0F172A;
+      transition: all 0.2s ease;
+      margin-bottom: 0;
+    }
+
+    .radio-group label:hover {
+      background: #1E293B;
+      border-color: #475569;
+    }
+
+    .radio-group label:has(input[type="radio"]:checked) {
+      border-color: var(--brand-primary);
+      background: rgba(99, 102, 241, 0.1);
+    }
+
+    .radio-group input[type="radio"]:checked + span {
+      color: white;
+    }
+
+    .radio-group input[type="radio"] {
+      margin-right: 12px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: var(--brand-primary);
+    }
+
+    .loading-cep {
+      display: none;
+      color: #6366F1;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    .btn-submit {
+      background: var(--brand-gradient-glow);
+      color: white;
+      padding: 18px 40px;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease;
+      box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.4);
+      margin-top: 35px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px -5px rgba(236, 72, 153, 0.5);
+    }
+
+    /* ===== MODAIS & OVERLAYS ===== */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(8px);
+      width: 100%; height: 100%;
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loading-content {
+      background: var(--surface-card);
+      padding: 40px;
+      border-radius: var(--radius-lg);
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      max-width: 340px;
+      width: 90%;
+      border: 1px solid var(--border-color);
+    }
+
+    .spinner {
+      border: 4px solid #0F172A;
+      border-top: 4px solid var(--brand-primary);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* ===== MODAL PROTOCOLO DESIGN ===== */
+    .protocolo {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      width: 100%; height: 100%;
+      z-index: 3000;
+      overflow-y: auto;
+      padding: 60px 20px;
+    }
+
+    .protocolo-content {
+      max-width: 750px;
+      margin: 0 auto;
+      background: var(--surface-card);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .protocolo-hero {
+      background: var(--brand-gradient);
+      padding: 35px 40px;
+      color: white;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .protocolo-hero h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .protocolo-hero p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .protocolo-body {
+      padding: 40px;
+    }
+
+    .resumo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .resumo-card {
+      background: #0F172A;
+      border: 1px solid var(--border-color);
+      padding: 20px;
+      border-radius: var(--radius-md);
+    }
+
+    .resumo-card span {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .resumo-card p {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .resumo-card.destaque-card {
+      grid-column: 1 / -1;
+      background: rgba(99, 102, 241, 0.1);
+      border-color: rgba(99, 102, 241, 0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .resumo-card.destaque-card p {
+      color: #A5B4FC;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .protocolo-actions {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .btn {
+      padding: 16px 36px;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-pdf {
+      background: var(--brand-gradient-glow);
+      color: white;
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+      flex: 1;
+    }
+
+    .btn-pdf:hover {
+      box-shadow: 0 12px 28px rgba(236, 72, 153, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-close {
+      background: #0F172A;
+      color: var(--text-main);
+      border: 2px solid var(--border-color);
+    }
+
+    .btn-close:hover {
+      background: #1E293B;
+      border-color: #475569;
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    @media (max-width: 768px) {
+      body { padding: 30px 10px; }
+      header { padding: 25px 20px; margin-bottom: 20px; }
+      .header-content { flex-direction: column; text-align: center; gap: 20px; }
+      .header-center h1 { font-size: 2.2rem; }
+      .lgpd-section, .form-section, .protocolo-body, .activity-content { padding: 25px 20px; }
+      .activities-grid, .themes-section { grid-template-columns: 1fr; }
+      .activity-image { height: 210px; }
+      .protocolo-actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <h3 style="color: #818CF8; font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px;">Guardando dados...</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">Aguarde um momento</p>
+    </div>
+  </div>
+
+  <div class="container">
+    
+    <header>
+      <div class="header-content">
+        <div class="header-logo-box">
+          <img src="LOGO.jpg" alt="Logo Prefeitura">
+        </div>
+        <div class="header-center">
+          <h1>CJ DOM MACÁRIO</h1>
+          <p>Acolhendo e Transformando Vidas</p>
+        </div>
+        <div class="header-logo-box">
+          <img src="logo transparente.jpg" alt="Brasão Vermelho">
+        </div>
+      </div>
+    </header>
+
+    <div class="age-banner">
+      ATIVIDADES EXCLUSIVAS PARA JOVENS DE <span>15 A 17 ANOS</span>
+    </div>
+
+    <div class="lgpd-section">
+      <div class="lgpd-header">
+        <div class="lgpd-icon">🛡</div>
+        <div class="lgpd-header-text">
+          <h3>Proteção de Dados Pessoais (LGPD)</h3>
+          <p>Segurança e transparência sob a Lei nº 13.709/2018</p>
+        </div>
+      </div>
+      <div class="lgpd-grid">
+        <div class="lgpd-card">
+          <h4>Quais dados coletamos?</h4>
+          <p>Nome completo, data de nascimento, endereço, contato, informações do responsável legal, escolaridade e situação socioeconômica.</p>
+        </div>
+        <div class="lgpd-card">
+          <h4>Para que utilizamos?</h4>
+          <p>Exclusivamente para a realização da inscrição, controle de frequência, relatórios e comunicação interna das atividades.</p>
+        </div>
+        <div class="lgpd-card">
+          <h4>Como protegemos?</h4>
+          <p>Armazenados de forma estritamente segura, acessados apenas por profissionais autorizados e sem compartilhamento externo.</p>
+        </div>
+        <div class="lgpd-card">
+          <h4>Seus direitos</h4>
+          <p>Você pode acessar, corrigir, atualizar ou solicitar a exclusão dos dados a qualquer momento entrando em contato com nossa equipe.</p>
+        </div>
+      </div>
+      <div class="lgpd-destaque">
+        <p><strong>Consentimento e Base Legal:</strong> Ao enviar este formulário, o responsável legal e o participante concordam com o tratamento dos dados com base no legítimo interesse institucional e cumprimento de obrigação legal (Art. 7º, II e IX da LGPD), com a proteção reforçada dada pelo ECA (Lei nº 8.069/1990).</p>
+      </div>
+      <p class="lgpd-lei-ref">Acesse o texto completo da lei em: <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">Lei nº 13.709/2018</a></p>
+    </div>
+
+    <section class="activities-section">
+      <h2 class="section-title">Nossas Atividades Gratuitas</h2>
+      <div class="activities-grid">
+        
+        <div class="activity-card">
+          <div class="activity-image">
+            <div class="activity-badge">TECNOLOGIA</div>
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80" alt="Estudantes em sala tecnológica moderna de computação focados no desenvolvimento profissional">
+          </div>
+          <div class="activity-content">
+            <h3>Informática e Carreira Digital</h3>
+            <p>Domine o futuro digital! Prepare-se para o mercado profissional aprendendo desde as ferramentas essenciais do pacote Office até noções de desenvolvimento web, design gráfico, criação de planilhas de performance, segurança na internet e noções práticas de lógica e programação.</p>
+            <p><strong>Objetivo:</strong> Potencializar habilidades analíticas digitais para expandir as oportunidades de emprego no mercado moderno.</p>
+            <div class="horarios">
+              <h4>Horários Disponíveis (Segunda a Sexta):</h4>
+              <p>🕒 <strong>Tarde:</strong> 13h às 17h</p>
+              <p>🌙 <strong>Noite:</strong> 18h às 22h</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-card">
+          <div class="activity-image">
+            <div class="activity-badge">EDIÇÃO & MÍDIA</div>
+            <img src="https://images.unsplash.com/photo-1622737133809-d95047b9e673?auto=format&fit=crop&w=900&q=80" alt="Software de edição de vídeo em tela de computador de última geração com efeitos de pós-produção digitais">
+          </div>
+          <div class="activity-content">
+            <h3>Informática Audiovisual</h3>
+            <p>Aprenda a contar histórias impactantes através das lentes e das telas! Explore o universo da produção de conteúdo digital, técnicas de fotografia, operação de softwares modernos de edição de vídeo, tratamento de imagem, criação de roterio, documentos visuais, captação de áudio digital e pós-produção profissional para redes e mídias.</p>
+            <p><strong>Objetivo:</strong> Unir as ferramentas tecnológicas da computação à criação e manipulação estética de mídias dinâmicas e cinema contemporâneo.</p>
+            <div class="horarios">
+              <h4>Horários Disponíveis (Segunda a Sexta):</h4>
+              <p>🕒 <strong>Tarde:</strong> 13h às 17h</p>
+              <p>🌙 <strong>Noite:</strong> 18h às 22h</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="themes-section">
+        <div class="theme-card">
+          <h3>Projetos de Convívio</h3>
+          <p>Rodas de conversa dinâmicas e atividades em grupo focadas na formação cidadã. Abordamos temas fundamentais como diversidade, inclusão, direitos humanos, mediação pacífica de conflitos, empatia e inteligência socioemocional para o fortalecimento de vínculos.</p>
+        </div>
+        <div class="theme-card">
+          <h3>Esporte e Cultura de Lazer</h3>
+          <p>O esporte visto como motor de transformação e inclusão social. Oferecemos dinâmicas recreativas e esportivas que desenvolvem a disciplina, saúde física, cooperação mútua, autoconfiança e os pilares de respeito e companheirismo entre as equipes.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="form-section">
+      <h2 class="section-title">Formulário de Inscrição</h2>
+      <form id="formInscricao">
+        
+        <div class="form-group">
+          <label for="numeroInscricao">Número da Inscrição</label>
+          <input type="text" id="numeroInscricao" name="numeroInscricao" class="readonly-field" readonly>
+        </div>
+
+        <div class="form-section-title">1. Dados Pessoais do Aluno</div>
+        
+        <div class="form-group">
+          <label for="nomeCompleto">Nome Completo *</label>
+          <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Insira o nome completo" required>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="dataNascimento">Data de Nascimento *</label>
+            <input type="date" id="dataNascimento" name="dataNascimento" required>
+          </div>
+          <div class="form-group">
+            <label for="idade">Idade</label>
+            <input type="number" id="idade" name="idade" class="readonly-field" readonly>
+          </div>
+          <div class="form-group">
+            <label for="dataInscricao">Data da Inscrição</label>
+            <input type="date" id="dataInscricao" name="dataInscricao" class="readonly-field" readonly>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cep">CEP *</label>
+            <input type="text" id="cep" name="cep" placeholder="00000-000" maxlength="9" required>
+            <div class="loading-cep" id="loadingCep">⚡ Buscando endereço automático...</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label for="endereco">Endereço (Rua/Avenida) *</label>
+            <input type="text" id="endereco" name="endereco" placeholder="Nome do Logradouro" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="numeroEndereco">Número *</label>
+            <input type="text" id="numeroEndereco" name="numeroEndereco" placeholder="Nº" required>
+          </div>
+          <div class="form-group">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Apto, Bloco, Casa (Opcional)">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bairro">Bairro *</label>
+            <input type="text" id="bairro" name="bairro" required>
+          </div>
+          <div class="form-group">
+            <label for="cidade">Cidade *</label>
+            <input type="text" id="cidade" name="cidade" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefoneFixo">Telefone Fixo</label>
+            <input type="tel" id="telefoneFixo" name="telefoneFixo" placeholder="(00) 0000-0000" maxlength="14">
+          </div>
+          <div class="form-group">
+            <label for="telefoneCelular">Telefone Celular / WhatsApp *</label>
+            <input type="tel" id="telefoneCelular" name="telefoneCelular" placeholder="(00) 00000-0000" maxlength="15" required>
+          </div>
+        </div>
+
+        <div class="form-section-title">2. Responsável Legal</div>
+        
+        <div class="form-group">
+          <label for="nomeResponsavel">Nome do Responsável *</label>
+          <input type="text" id="nomeResponsavel" name="nomeResponsavel" placeholder="Nome do pai, mãe ou tutor" required>
+        </div>
+        <div class="form-group">
+          <label for="contatoResponsavel">Contato Telefônico do Responsável *</label>
+          <input type="tel" id="contatoResponsavel" name="contatoResponsavel" placeholder="(00) 00000-0000" maxlength="15" required>
+        </div>
+
+        <div class="form-section-title">3. Indicadores Socioeconômicos</div>
+        
+        <div class="form-group">
+          <label>Recebe Algum Benefício Governamental? *</label>
+          <div class="radio-group">
+            <label><input type="radio" name="beneficio" value="Não recebo" required><span>Não recebo nenhum benefício</span></label>
+            <label><input type="radio" name="beneficio" value="Bolsa Família"><span>Bolsa Família</span></label>
+            <label><input type="radio" name="beneficio" value="Pé de Meia"><span>Pé de Meia</span></label>
+            <label><input type="radio" name="beneficio" value="Outro" id="beneficioOutro"><span>Outro Benefício</span></label>
+          </div>
+          <input type="text" id="beneficioOutroTexto" name="beneficioOutroTexto" placeholder="Especifique o programa ou benefício social" style="margin-top: 15px; display: none;">
+        </div>
+
+        <div class="form-group">
+          <label>Escolaridade Atual *</label>
+          <div class="radio-group">
+            <label><input type="radio" name="escolaridade" value="Ensino Fundamental - Cursando" required><span>Ensino Fundamental - Cursando</span></label>
+            <label><input type="radio" name="escolaridade" value="Ensino Fundamental - Completo"><span>Ensino Fundamental - Completo</span></label>
+            <label><input type="radio" name="escolaridade" value="Ensino Médio - Cursando"><span>Ensino Médio - Cursando</span></label>
+            <label><input type="radio" name="escolaridade" value="Ensino Médio - Completo"><span>Ensino Médio - Completo</span></label>
+            <label><input type="radio" name="escolaridade" value="EJA - Cursando"><span>EJA - Cursando</span></label>
+            <label><input type="radio" name="escolaridade" value="EJA - Completo"><span>EJA - Completo</span></label>
+            <label><input type="radio" name="escolaridade" value="Não Estuda"><span>Não Estuda Atualmente</span></label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="deficiencia">Possui Alguma Deficiência, Transtorno ou Restrição Médica?</label>
+          <textarea id="deficiencia" name="deficiencia" placeholder="Escreva detalhadamente se possui PCD, transtornos (ex: TDAH, TEA) ou necessidades alimentares/médicas. Caso não possua, deixe este espaço em branco."></textarea>
+        </div>
+
+        <div class="form-section-title">4. Escolha de Curso e Turno Preferencial</div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label for="atividade">Atividade desejada *</label>
+            <select id="atividade" name="atividade" required>
+              <option value="" disabled selected>Selecione um curso...</option>
+              <option value="Informática e Carreira Digital">Informática e Carreira Digital</option>
+              <option value="Informática Audiovisual">Informática Audiovisual</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Período Preferencial *</label>
+            <div class="radio-group" style="flex-direction: row; gap: 20px;">
+              <label style="flex: 1;"><input type="radio" name="horario" value="Tarde (13h às 17h)" required><span>Tarde (13h a 17h)</span></label>
+              <label style="flex: 1;"><input type="radio" name="horario" value="Noite (18h às 22h)"><span>Noite (18h a 22h)</span></label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="btnSubmit">Concluir e Gerar Protocolo</button>
+      </form>
+    </div>
+
+  </div>
+
+  <div id="protocolo" class="protocolo">
+    <div class="protocolo-content">
+      <div class="protocolo-header" style="border-radius: 0; border: none; border-bottom: 1px solid var(--border-color); margin-bottom: 0;">
+        <div class="protocolo-header-content" style="display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 25px 40px; background: #1E293B;">
+          <div class="header-logo-box">
+            <img src="LOGO.jpg" alt="Logo Prefeitura">
+          </div>
+          <div class="header-center">
+            <h1 style="font-size: 2rem; background: var(--brand-gradient-glow); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Space Grotesk'; font-weight:700;">CJ DOM MACÁRIO</h1>
+            <p style="font-size: 0.95rem; color: var(--text-muted); font-weight: 600;">Acolhendo e Transformando Vidas</p>
+          </div>
+          <div class="header-logo-box">
+            <img src="logo transparente.jpg" alt="Brasão Vermelho">
+          </div>
+        </div>
+      </div>
+      <div class="protocolo-hero">
+        🎉 <h2>Inscrição Confirmada com Sucesso!</h2>
+        <p id="msgSheetsStatus">Sua vaga está sendo processada.</p>
+      </div>
+      <div class="protocolo-body">
+        <div id="dadosResumoProtocolo" class="resumo-grid"></div>
+        <div class="protocolo-actions">
+          📥 <button type="button" onclick="baixarPDF()" class="btn btn-pdf">Baixar Comprovante PDF</button>
+          <button type="button" onclick="fecharProtocolo()" class="btn btn-close">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzpaGG6d10EF4uVpV5VQycWez2i7m9F_0SN1lhlU1LZ3CPYMZDzvw9YpFoX4IDo4xw2Ag/exec';
+    const imgPrefeituraSrc = "LOGO.jpg";
+    const imgBrasaoSrc = "logo transparente.jpg";
+    
+    let contadorInscricao = parseInt(localStorage.getItem('contadorInscricao')) || 1;
+    let dadosProtocolo = {};
+    const hoje = new Date().toISOString().split('T')[0];
+
+    window.onload = function() {
+      document.getElementById('numeroInscricao').value = String(contadorInscricao).padStart(6, '0');
+      document.getElementById('dataInscricao').value = hoje;
+      configurarMascarasTelefone();
+    };
+
+    function configurarMascarasTelefone() {
+      const fixoInput = document.getElementById('telefoneFixo');
+      const celularInput = document.getElementById('telefoneCelular');
+      const responsavelInput = document.getElementById('contatoResponsavel');
+      const cepInput = document.getElementById('cep');
+
+      const aplicarMascara = (input, tipo) => {
+        input.addEventListener('input', (e) => {
+          let num = e.target.value.replace(/\D/g, "");
+          if (tipo === 'fixo') {
+            if (num.length > 0) num = "(" + num;
+            if (num.length > 3) num = num.slice(0, 3) + ") " + num.slice(3);
+            if (num.length > 8) num = num.slice(0, 9) + "-" + num.slice(9);
+            e.target.value = num.slice(0, 14);
+          } else if (tipo === 'celular') {
+            if (num.length > 0) num = "(" + num;
+            if (num.length > 3) num = num.slice(0, 3) + ") " + num.slice(3);
+            if (num.length > 9) num = num.slice(0, 10) + "-" + num.slice(10);
+            e.target.value = num.slice(0, 15);
+          } else if (tipo === 'cep') {
+            if (num.length > 5) num = num.slice(0, 5) + "-" + num.slice(5);
+            e.target.value = num.slice(0, 9);
+          }
+        });
+      };
+
+      aplicarMascara(fixoInput, 'fixo');
+      aplicarMascara(celularInput, 'celular');
+      aplicarMascara(responsavelInput, 'celular');
+      aplicarMascara(cepInput, 'cep');
+    }
+
+    // Cálculo Automático de Idade
+    document.getElementById('dataNascimento').addEventListener('change', function() {
+      const nasc = new Date(this.value);
+      if(isNaN(nasc)) return;
+      const hojeData = new Date();
+      let idade = hojeData.getFullYear() - nasc.getFullYear();
+      const m = hojeData.getMonth() - nasc.getMonth();
+      if (m < 0 || (m === 0 && hojeData.getDate() < nasc.getDate())) {
+        idade--;
+      }
+      document.getElementById('idade').value = idade;
+    });
+
+    // Toggle campo "Outro Benefício"
+    document.getElementsByName('beneficio').forEach(el => {
+      el.addEventListener('change', function() {
+        const txt = document.getElementById('beneficioOutroTexto');
+        if(document.getElementById('beneficioOutro').checked) {
+          txt.style.display = 'block';
+          txt.required = true;
+        } else {
+          txt.style.display = 'none';
+          txt.required = false;
+          txt.value = '';
+        }
+      });
+    });
+
+    // Busca de Endereço Automática via API ViaCEP
+    document.getElementById('cep').addEventListener('blur', function() {
+      const cep = this.value.replace(/\D/g, '');
+      if (cep.length === 8) {
+        document.getElementById('loadingCep').style.display = 'block';
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+          .then(res => res.json())
+          .then(data => {
+            document.getElementById('loadingCep').style.display = 'none';
+            if (!data.erro) {
+              document.getElementById('endereco').value = data.logradouro;
+              document.getElementById('bairro').value = data.bairro;
+              document.getElementById('cidade').value = data.localidade;
+            }
+          }).catch(() => document.getElementById('loadingCep').style.display = 'none');
+      }
+    });
+
+    function formatarDataBR(dataString) {
+      if(!dataString) return "";
+      const partes = dataString.split('-');
+      if(partes.length !== 3) return dataString;
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+    // Submissão assíncrona do Formulário e envio para o Google Sheets
+    document.getElementById('formInscricao').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('loadingOverlay').style.display = 'flex';
+      
+      const formData = new FormData(this);
+      const dataObj = {};
+      formData.forEach((value, key) => {
+        dataObj[key] = value;
+      });
+      dataObj.numeroInscricao = document.getElementById('numeroInscricao').value;
+      dataObj.dataInscricao = document.getElementById('dataInscricao').value;
+      dataObj.idade = document.getElementById('idade').value;
+      dadosProtocolo = dataObj;
+
+      // Monta Resumo Visual na Tela de Sucesso
+      document.getElementById('dadosResumoProtocolo').innerHTML = `
+        <div class="resumo-card destaque-card">
+          <div>
+            <span>Código do Protocolo</span>
+            <p>#${dataObj.numeroInscricao}</p>
+          </div>
+          <div style="text-align: right;">
+            <span>Data de Emissão</span>
+            <p>${formatarDataBR(dataObj.dataInscricao)}</p>
+          </div>
+        </div>
+        <div class="resumo-card">
+          <span>Nome do Aluno</span>
+          <p>${dataObj.nomeCompleto}</p>
+        </div>
+        <div class="resumo-card">
+          <span>Nascimento</span>
+          <p>${formatarDataBR(dataObj.dataNascimento)} (${dataObj.idade} anos)</p>
+        </div>
+        <div class="resumo-card">
+          <span>Atividade Escolhida</span>
+          <p>${dataObj.atividade}</p>
+        </div>
+        <div class="resumo-card">
+          <span>Turno / Período</span>
+          <p>${dataObj.horario}</p>
+        </div>
+        <div class="resumo-card" style="grid-column: 1 / -1;">
+          <span>Responsável Legal</span>
+          <p>${dataObj.nomeResponsavel} — Tel: ${dataObj.contatoResponsavel}</p>
+        </div>
+      `;
+
+      // Envio de dados para a Planilha via Web App do Google Apps Script
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+      })
+      .then(response => response.json())
+      .then(result => {
+        if(result.result === 'success') {
+          document.getElementById('msgSheetsStatus').textContent = "Prontinho! Seus dados foram salvos com sucesso na nossa planilha.";
+        } else {
+          document.getElementById('msgSheetsStatus').textContent = "Seus dados foram processados localmente, mas houve um contratempo ao sincronizar online.";
+        }
+      })
+      .catch(error => {
+        console.error('Erro Sheets:', error);
+        document.getElementById('msgSheetsStatus').textContent = "Preenchimento salvo! Certifique-se de baixar o seu arquivo PDF abaixo.";
+      })
+      .finally(() => {
+        document.getElementById('protocolo').style.display = 'block';
+        document.getElementById('loadingOverlay').style.display = 'none';
+        contadorInscricao++;
+        localStorage.setItem('contadorInscricao', contadorInscricao);
+      });
+    });
+
+    function fecharProtocolo() {
+      document.getElementById('protocolo').style.display = 'none';
+      document.getElementById('formInscricao').reset();
+      document.getElementById('numeroInscricao').value = String(contadorInscricao).padStart(6, '0');
+      document.getElementById('dataInscricao').value = hoje;
+      document.getElementById('beneficioOutroTexto').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Geração Inteligente do Comprovante Oficial em PDF
+    function baixarPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF('p', 'mm', 'a4');
+      const contentWidth = 190;
+      const marginX = 10;
+      let yPos = 15;
+
+      function imageToBase64(url, callback) {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          canvas.width = this.width;
+          canvas.height = this.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(this, 0, 0);
+          callback(canvas.toDataURL('image/jpeg'));
+        };
+        img.onerror = function() {
+          callback(null);
+        };
+        img.src = url;
+      }
+
+      imageToBase64(imgPrefeituraSrc, function(base64Prefeitura) {
+        if (base64Prefeitura) {
+          doc.addImage(base64Prefeitura, 'JPEG', 10, 10, 30, 20);
+        }
+        imageToBase64(imgBrasaoSrc, function(base64Brasao) {
+          if (base64Brasao) {
+            doc.addImage(base64Brasao, 'JPEG', 170, 10, 30, 20);
+          }
+
+          doc.setFontSize(22);
+          doc.setTextColor(74, 74, 94);
+          doc.text('CJ DOM MACÁRIO', 105, 20, { align: 'center' });
+          doc.setFontSize(12);
+          doc.text('Protocolo de Inscrição Oficial', 105, 26, { align: 'center' });
+          
+          doc.setDrawColor(99, 102, 241);
+          doc.setLineWidth(1);
+          doc.line(marginX, 35, marginX + contentWidth, 35);
+          
+          yPos = 45;
+          doc.setFontSize(11);
+          doc.setTextColor(50, 50, 50);
+          
+          doc.setFont(undefined, 'bold');
+          doc.text(`PROTOCOLO DIGITAL: #${dadosProtocolo.numeroInscricao}`, marginX, yPos);
+          doc.setFont(undefined, 'normal');
+          yPos += 6;
+          doc.text(`Data de Emissão: ${formatarDataBR(dadosProtocolo.dataInscricao)}`, marginX, yPos);
+          yPos += 10;
+          
+          doc.setDrawColor(210, 214, 219);
+          doc.setFillColor(248, 250, 252);
+          doc.rect(marginX, yPos, contentWidth, 85, 'FD');
+          
+          doc.setFont(undefined, 'bold');
+          doc.text('1. INFORMAÇÕES DO CANDIDATO', marginX + 4, yPos + 6);
+          doc.setFont(undefined, 'normal');
+          yPos += 14;
+          
+          doc.text(`Nome Completo: ${dadosProtocolo.nomeCompleto}`, marginX + 4, yPos); yPos += 6;
+          doc.text(`Data de Nascimento: ${formatarDataBR(dadosProtocolo.dataNascimento)} (${dadosProtocolo.idade} anos)`, marginX + 4, yPos); yPos += 6;
+          doc.text(`Endereço: ${dadosProtocolo.endereco}, Nº ${dadosProtocolo.numeroEndereco} ${dadosProtocolo.complemento ? '- ' + dadosProtocolo.complemento : ''}`, marginX + 4, yPos); yPos += 6;
+          doc.text(`Bairro: ${dadosProtocolo.bairro}  |  Cidade: ${dadosProtocolo.cidade}  |  CEP: ${dadosProtocolo.cep}`, marginX + 4, yPos); yPos += 6;
+          doc.text(`Celular/WhatsApp: ${dadosProtocolo.telefoneCelular} ${dadosProtocolo.telefoneFixo ? ' | Fixo: ' + dadosProtocolo.telefoneFixo : ''}`, marginX + 4, yPos); yPos += 10;
+          
+          doc.setFont(undefined, 'bold');
+          doc.text('2. RESPONSÁVEL LEGAL E DADOS SÓCIOECONÔMICOS', marginX + 4, yPos);
+          doc.setFont(undefined, 'normal');
+          yPos += 8;
+          
+          doc.text(`Responsável Legal: ${dadosProtocolo.nomeResponsavel}`, marginX + 4, yPos); yPos += 6;
+          doc.text(`Contato do Responsável: ${dadosProtocolo.contatoResponsavel}`, marginX + 4, yPos); yPos += 6;
+          doc.text(`Benefício Social: ${dadosProtocolo.beneficio} ${dadosProtocolo.beneficioOutroTexto ? '- ' + dadosProtocolo.beneficioOutroTexto : ''}`, marginX + 4, yPos); yPos += 6;
+          doc.text(`Escolaridade declarada: ${dadosProtocolo.escolaridade}`, marginX + 4, yPos);
+          
+          if(dadosProtocolo.deficiencia) {
+            yPos += 6;
+            doc.text(`PCD / Restrições Médicas: ${dadosProtocolo.deficiencia}`, marginX + 4, yPos);
+          }
+          yPos += 12;
+          
+          doc.setDrawColor(139, 127, 196);
+          doc.setFillColor(245, 243, 247);
+          doc.rect(marginX, yPos, contentWidth, 16, 'FD');
+          
+          doc.setFont(undefined, 'bold');
+          doc.text(`ATIVIDADE INSCRITA: ${dadosProtocolo.atividade.toUpperCase()}`, marginX + 4, yPos + 7);
+          doc.text(`Período Preferencial: ${dadosProtocolo.horario}`, marginX + 4, yPos + 12);
+          doc.setFont(undefined, 'normal');
+          yPos += 26;
+          
+          doc.setFontSize(9);
+          doc.setTextColor(142, 142, 159);
+          const txtObs = doc.splitTextToSize('A inscrição não garante vaga imediata. Aguarde o contato da coordenação do Centro de Juventude (CJ) Dom Macário para efetivação do processo, chamada das turmas e início das aulas.', contentWidth);
+          doc.text(txtObs, marginX, yPos);
+          
+          yPos += 20;
+          doc.setDrawColor(180, 180, 190);
+          doc.line(40, yPos, 170, yPos);
+          yPos += 5;
+          doc.text('Assinatura do Responsável / Candidato no ato da Matrícula', 105, yPos, { align: 'center' });
+
+          doc.save(`Inscricao_${dadosProtocolo.numeroInscricao}_CJDomMacario.pdf`);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
